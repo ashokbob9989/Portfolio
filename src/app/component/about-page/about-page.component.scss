@@ -1,0 +1,191 @@
+:root {
+  --bg: #1f262d;
+  --bg-soft: rgba(38, 46, 54, 0.65);
+  --accent: #48cae4;
+  --text: #eaeaea;
+  --muted: #9aa6b2;
+}
+
+/* ================= DIVIDER ================= */
+hr {
+  border: none;
+  height: 2px;
+  width: 85%;
+  margin: auto;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+}
+
+h3 {
+  background-color: var(--accent);
+  color: var(--text);
+  padding: 10px 24px;
+  width: fit-content;
+}
+
+/* ================= PAGE LAYOUT ================= */
+.about-page {
+  min-height: 100vh;
+  background: var(--bg);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  color: var(--text);
+  padding: 32px;
+}
+
+/* ================= ABOUT JOURNEY ================= */
+.about-journey {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 20px;
+  position: relative;
+
+  section {
+    background-color: var(--bg-soft);
+    padding: 20px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    h4 {
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* ----- Horizontal connector for desktop ----- */
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      width: 40px;
+      height: 4px;
+      background-color: var(--accent);
+      transform: translateY(-50%);
+    }
+
+    &:last-child {
+        border: 1px solid var(--accent);
+    }
+
+    /* ----- Connector circle ----- */
+    // &::before {
+    //   content: '';
+    //   position: absolute;
+    //   top: 50%;
+    //   right: -28px;
+    //   width: 12px;
+    //   height: 12px;
+    //   background-color: var(--accent);
+    //   border-radius: 50%;
+    //   transform: translateY(-50%);
+    // }
+  }
+}
+
+/* ================= RESPONSIVENESS ================= */
+
+/* ---------- Tablet: 2 columns ---------- */
+@media (max-width: 1024px) {
+  .about-journey {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+
+    section {
+      position: relative;
+
+      /* Reset previous pseudo-elements */
+      &::after,
+      &::before {
+        content: none;
+      }
+
+      /* Horizontal connector only for odd cards (1,3,5...) */
+      &:nth-child(even)::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -15px; /* distance to next card */
+        width: 30px;   /* horizontal line length */
+        height: 4px;
+        background-color: var(--accent);
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+/* ---------- Mobile: 1 column ---------- */
+@media (max-width: 768px) {
+  .about-journey {
+    grid-template-columns: 1fr;
+    gap: 40px;
+
+    section {
+      &::after,
+      &::before {
+        content: none;
+      }
+    }
+
+    section:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 40px;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent);
+    }
+
+    // section:not(:last-child)::before {
+    //   content: '';
+    //   position: absolute;
+    //   top: 100%;
+    //   left: 50%;
+    //   width: 12px;
+    //   height: 12px;
+    //   background-color: var(--accent);
+    //   border-radius: 50%;
+    //   transform: translate(-50%, -50%);
+    // }
+
+    section {
+      padding: 16px;
+    }
+
+    h3 {
+      padding: 8px 16px;
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+/* ---------- Extra small screens ---------- */
+@media (max-width: 480px) {
+  .about-page {
+    padding: 16px;
+  }
+
+  .about-journey {
+    gap: 20px;
+
+    section {
+      padding: 12px;
+    }
+  }
+}

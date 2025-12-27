@@ -1,0 +1,56 @@
+<div class="skills-page" id="skills">
+    <hr />
+
+    <h3>Skills</h3>
+
+    <main>
+        @for (node of skills; track $index) {
+        <ng-container [ngTemplateOutlet]="skillNode" [ngTemplateOutletContext]="{ $implicit: node, level: 0 }">
+        </ng-container>
+        }
+    </main>
+
+    <!-- Recursive Template -->
+    <ng-template #skillNode let-node let-level="level">
+        <div class="skill-node" [style.--level]="level">
+
+            <div class="section-label" tabindex="0" (click)="node.expanded = !node.expanded"
+                (keydown.enter)="node.expanded = !node.expanded">
+
+                <!-- <i class="fa-solid fa-map-pin"></i> -->
+
+                <span class="title">
+                    {{ node.section || node.category }}
+                </span>
+
+                @if (node.subSkills?.length || node.skills?.length) {
+                <i class="fa-solid fa-angles-down" [class.open]="node.expanded">
+                </i>
+                }
+            </div>
+
+            <!-- Leaf Skills -->
+            @if (node.skills?.length && node.expanded) {
+            <ul class="skills-list">
+                @for (skill of node.skills; track $index) {
+                <li>
+                    <span class="dot"></span>
+                    {{ skill }}
+                </li>
+                }
+            </ul>
+            }
+
+            <!-- Children -->
+            @if (node.subSkills?.length && node.expanded) {
+            <div class="sub-skills">
+                @for (child of node.subSkills; track $index) {
+                <ng-container [ngTemplateOutlet]="skillNode"
+                    [ngTemplateOutletContext]="{ $implicit: child, level: level + 1 }">
+                </ng-container>
+                }
+            </div>
+            }
+        </div>
+    </ng-template>
+</div>

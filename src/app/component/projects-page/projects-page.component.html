@@ -1,0 +1,96 @@
+<div class="projects-page" id="projects">
+    <hr />
+
+    <h3>Projects</h3>
+
+    <main>
+        @for (project of projects; track project) {
+        <article class="project-post" [id]="'project-' + projects.indexOf(project)">
+
+            <div class="project-card-grid">
+
+                <!-- LEFT HALF: Project Details -->
+                <div class="project-left">
+                    <!-- Header -->
+                    <div class="post-header">
+                        <div>
+                            <h4>{{ project.title }}</h4>
+                            <span class="type">{{ project.type }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="description">{{ project.description }}</p>
+
+                    <!-- Tech Stack -->
+                    <div class="tech">
+                        @for (t of project.tech; track t) {
+                        <span>{{ t }}</span>
+                        }
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="actions">
+                        <!-- <button (click)="toggleLike(project)">
+                            <i class="fa-solid fa-heart" [class.liked]="project.liked"></i>
+                            {{ project.likes }}
+                        </button> -->
+
+                        <!-- <button (click)="project.showCommentInput = !project.showCommentInput">
+                            <i class="fa-regular fa-comment"></i>
+                            {{ project.comments.length }}
+                        </button> -->
+
+                        <div class="share-dropdown">
+                            <button (click)="project.showShareOptions = !project.showShareOptions">
+                                <i class="fa-solid fa-share-nodes"></i> Share
+                            </button>
+
+                            @if (project.showShareOptions) {
+                                <div class="share-options">
+                                    @for(platform of sharePlatforms; track platform) {
+                                        <button (click)="shareProject(platform, project)">
+                                            <i class="{{ platform.icon }}"></i> {{ platform.name }}
+                                        </button>
+                                    }
+                                </div>
+                            }
+                        </div>
+
+
+                        <a [href]="project.github" target="_blank">
+                            <i class="fa-brands fa-github"></i> Source
+                        </a>
+                        <a [href]="project.live" target="_blank">
+                            <i class="fa-solid fa-globe"></i> Live
+                        </a>
+                    </div>
+
+                    <!-- Comments -->
+                    <!-- <div class="comments">
+                        @for (c of project.comments; track c) {
+                        <div class="comment">
+                            <strong>{{ c.user }}</strong> {{ c.text }}
+                        </div>
+                        }
+
+                        @if (project.showCommentInput) {
+                        <div class="comment-input">
+                            <input [(ngModel)]="project.newComment" placeholder="Write a comment..." />
+                            <button (click)="addComment(project)">Post</button>
+                        </div>
+                        }
+                    </div> -->
+                </div>
+
+                <!-- RIGHT HALF: Project Icon -->
+                <div class="project-right">
+                    <i class="{{ project.iconClass }}"></i>
+                </div>
+
+            </div>
+        </article>
+        }
+    </main>
+
+</div>

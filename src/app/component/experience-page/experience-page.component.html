@@ -1,0 +1,61 @@
+<div class="experience-page" id="experience">
+    <hr />
+    <h3>Experience</h3>
+
+    <main class="experience-cards" >
+        @for(exp of experiences; track exp) {
+        <div class="experience-card" [class.current-role]="exp === experiences[0]">
+
+            <!-- Top-left icon with bordered pop effect -->
+            <div class="exp-icon"> 
+                <i class="{{ exp.iconClass }}"></i>
+            </div>
+
+            <!-- Card content -->
+            <div class="exp-content">
+                <div class="company">
+                    <a [href]="exp.website" target="_blank">{{ exp.company }}</a>
+                    <span class="duration">{{ exp.duration }}</span>
+                </div>
+
+                <div class="role-position">
+                    <strong>{{ exp.role }}</strong> - {{ exp.position }}
+                </div>
+
+                <div class="location-team">
+                    @if(exp.location){
+                    <span><i class="fa-solid fa-location-dot"></i> {{ exp.location }}</span>
+                    }
+                    @if (exp.teamSize){
+                    <span><i class="fa-solid fa-users"></i> Team: {{ exp.teamSize }}</span>
+                    }
+                </div>
+
+                <ul class="responsibilities">
+                    @for(r of exp.responsibilities; track r){
+                    <li>{{ r }}</li>
+                    }
+                </ul>
+
+                <div class="tools">
+                    @for(t of exp.tools; track t){
+                    <span>{{ t }}</span>
+                    }
+                </div>
+
+                @if(exp.achievements.length){
+                <div class="achievements">
+                    <strong>Achievements:</strong>
+                    <ul>
+                        @for(a of exp.achievements; track a){
+                        <li>{{ a }}</li>
+                        }
+                    </ul>
+                </div>
+                }
+            </div>
+
+        </div>
+        }
+    </main>
+</div>
