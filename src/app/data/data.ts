@@ -71,11 +71,15 @@ export const skills = [
     section: "Operating Systems & Developer Environment",
     subSkills: [
       { category: "Operating Systems", skills: ["Linux: Ubuntu", "Unix", "Windows"] },
-      { category: "Shell & CLI", skills: ["Bash / Shell Scripting", "Linux Command Line",
-        "File Permissions & Process Management", "Networking Commands: curl, wget"] },
+      {
+        category: "Shell & CLI", skills: ["Bash / Shell Scripting", "Linux Command Line",
+          "File Permissions & Process Management", "Networking Commands: curl, wget"]
+      },
       { category: "Editors & Terminals", skills: ["Vim", "Terminal / Command Prompt"] },
-      { category: "System & Dev Utilities", skills: ["Package Managers: apt", "Environment Variables & PATH",
-        "SSH & Secure Access", "Log Analysis & Monitoring"] },
+      {
+        category: "System & Dev Utilities", skills: ["Package Managers: apt", "Environment Variables & PATH",
+          "SSH & Secure Access", "Log Analysis & Monitoring"]
+      },
     ],
   },
 ];
@@ -112,7 +116,24 @@ export const projects = [
     showShareOptions: false,
     newComment: '',
     iconClass: 'fa-solid fa-bell'
+  },
+  {
+    id: 1,
+    title: '2048 Game',
+    type: 'Frontend',
+    description: 'A React-based implementation of the classic 2048 puzzle game where players combine numbered tiles using keyboard controls to reach the 2048 tile. The project features smooth tile animations, real-time score tracking, dynamic grid rendering, and game-over detection, with a focus on efficient state management, responsive UI design, and clean component architecture.',
+    tech: ['React', 'JavaScript', 'HTML', 'CSS'],
+    likes: 0,
+    comments: [],
+    github: 'https://github.com/sauashwork/Game2048.git',
+    live: 'https://game2048-sauash.vercel.app/',
+    liked: false,
+    showCommentInput: false,
+    showShareOptions: false,
+    newComment: '',
+    iconClass: 'fa-solid fa-gamepad'
   }
+
 ];
 
 export const sharePlatforms = [
